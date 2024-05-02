@@ -1,6 +1,6 @@
 {
   "name": "strapi-ethwallet-custom-field",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This Strapi plugin is used to add custom fields compatible with Ethereum network wallet",
   "repository": {
     "type": "git",

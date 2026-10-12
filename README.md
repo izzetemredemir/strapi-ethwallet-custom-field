@@ -1,44 +1,37 @@
-# Strapi plugin strapi-ethwallet-custom-field
+# strapi-ethwallet-custom-field
 
-This Strapi plugin enables the addition of custom fields specifically designed for Ethereum network wallets, enhancing content types with secure and structured Ethereum wallet address fields.
-![GMQdWIYWoAApeA9](https://github.com/izzetemredemir/strapi-ethwallet-custom-field-/assets/11755605/be22b232-1deb-4b7e-9057-23dcb0abf43e)
+A Strapi v4 plugin, written in TypeScript, that set out to add an Ethereum wallet address field to Strapi content types. What it ships is an admin panel page for looking up the ETH balance of an Ethereum address through the Etherscan API. It is for Strapi developers who want a starting point for Ethereum features in the admin panel.
 
+> **Status:** archived. Built in 2024. Kept for reference, not maintained.
 
-## Features
+![Plugin logo](https://github.com/izzetemredemir/strapi-ethwallet-custom-field-/assets/11755605/be22b232-1deb-4b7e-9057-23dcb0abf43e)
 
-- **Ethereum Wallet Field**: Introduces a new field type to Strapi that accepts Ethereum ERC20 wallet addresses.
-- **Automatic Validation**: Ensures that inputted addresses adhere to the Ethereum address format, enhancing data integrity.
-- **Seamless Integration**: Easily integrates into your existing Strapi environment, allowing for quick setup and configuration.
+## What it does
 
-## Installation
+- Adds a menu link with a puzzle icon to the Strapi admin panel, opening the plugin's page.
+- On that page, takes an Ethereum address and calls the Etherscan `account/balance` API, then shows the returned balance in wei.
+- Keeps the Strapi plugin scaffold on the server side (sample route, controller and service that return a welcome message), compiled from `server/` into `dist/`.
 
-To install the plugin, run the following command in your Strapi project directory:
+**Not implemented:** the custom field itself. The plugin does not register a custom field with Strapi, so no Ethereum address field type appears in the Content-Type Builder and no address validation happens. The Etherscan API key in `admin/src/pages/HomePage/index.tsx` is the placeholder `YOUR_API_KEY`, so the balance lookup needs a real key.
+
+## Tech stack
+
+- Strapi v4 plugin API (`@strapi/helper-plugin`, `@strapi/icons`)
+- TypeScript
+- React 18, react-router-dom 5
+- axios, Etherscan API
+
+## Running it locally
+
+Requires Node.js 18 to 20. Build the server code first, since `strapi-server.js` loads it from `dist/`:
 
 ```bash
-npm install strapi-ethwallet-custom-field
+npm install
+npm run build
 ```
 
-## Configuration
+Then add the folder to a Strapi v4 project as a local plugin. The release published on npm (`strapi-ethwallet-custom-field` 1.0.3) ships without `dist/`, so it cannot load as installed.
 
-After installation, you need to add the Ethereum wallet address field to your desired content type:
+## License
 
-1. Navigate to the Content-Type Builder in your Strapi admin panel.
-2. Choose the content type you want to enhance.
-3. Click on "Add new field" and select the Ethereum Wallet Address type provided by this plugin.
-4. Save the changes and restart your Strapi server for the changes to take effect.
-
-## Usage
-
-Once the field is added to a content type, it can be used to store Ethereum wallet addresses in the configured content type. The field will automatically validate the data to ensure that it conforms to the standard Ethereum wallet address format.
-
-## Contributing
-
-Contributions to improve `strapi-ethwallet-custom-field` are always welcome. Whether it's enhancing the functionality, improving the documentation, or reporting issues, your feedback is highly appreciated!
-
-To contribute:
-
-1. Fork the repository.
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -am 'Add some AmazingFeature'`).
-4. Push to the branch (`git push origin feature/AmazingFeature`).
-5. Open a Pull Request.
+MIT, see [LICENSE](LICENSE).
